@@ -9,11 +9,19 @@
     
 </head>
 <body>
+
+    <style>
+        span{
+            color: red;
+        }
+    </style>
     
     <div class="container">
         <div class="row d-flex justify-content-center align-items-center min-vh-100 py-5">
           <div class="col-sm-10 col-md-8 col-lg-5 col-xl-5 col-xxl-3">
             <a class="d-flex flex-center text-decoration-none mb-4" href="../../../index.html"></a>
+          
+          <form action="" method="post" onsubmit="return checkAll()">
             <div class="text-center mb-7">
               <h3 class="text-1000">Sign In</h3>
               <p class="text-700">Get access to your account</p>
@@ -21,22 +29,66 @@
             <div class="mb-3 text-start">
               <label class="form-label" for="email">Email address</label>
               <div class="form-icon-container">
-                <input class="form-control form-icon-input" id="email" type="email" placeholder="name@example.com" />
-                <span class="fas fa-user text-900 fs--1 form-icon"></span>
+                <input class="form-control form-icon-input" id="email" type="email" placeholder="name@example.com" onchange="emailCheck()"/>
+                <h6><span id="Email"></span></h6>
               </div>
             </div>
             <div class="mb-3 text-start">
               <label class="form-label" for="password">Password</label>
               <div class="form-icon-container">
-                <input class="form-control form-icon-input" id="password" type="password" placeholder="Password" />
-                <span class="fas fa-key text-900 fs--1 form-icon"></span>
+                <input class="form-control form-icon-input" id="password" type="password" placeholder="Password" onchange="passCheck()" />
+                <h6><span id="Password"></span></h6>
               </div>
             </div>
-            <button class="btn btn-primary w-100 mb-3">Sign In</button>
+            <button class="btn btn-primary w-100 mb-3" type="submit">Sign In</button>
+        </form>
           </div>
         </div>
       </div>
       
      
+
+
+<script>
+
+function passCheck() {
+    let name = document.getElementById("password").value;
+    if (name == "") {
+      document.getElementById("Password").innerHTML = "please enter your password";
+      return false
+    } else {
+      document.getElementById("Password").innerHTML = "";
+      return true
+    }
+  }
+
+  function emailCheck() {
+    let emailId = document.getElementById("email").value;
+    console.log("emailId" + emailId);
+    if (/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/.test(emailId) == false) {
+      document.getElementById("Email").innerHTML = "Please enter valid email ";
+      return false;
+    } else {
+      document.getElementById("Email").innerHTML = "";
+      return true;
+    }
+  }
+
+
+
+function checkAll(){
+    if(emailCheck() && passCheck()){
+        return true
+    }else{
+        return false
+    }
+}
+
+
+
+</script>
+
+
+
 </body>
 </html>
